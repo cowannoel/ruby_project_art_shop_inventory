@@ -2,7 +2,9 @@ require_relative( '../db/sql_runner' )
 
 class Print
 
-  attr_reader( :title, :description, :artist_id, :wholesale_cost, :retail_price, :id )
+  attr_reader( :title, :description, :artist_id, :id )
+  attr_accessor( :wholesale_cost, :retail_price, )
+
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -19,7 +21,6 @@ class Print
     results = SqlRunner.run( sql )
     return results.map { |print| Print.new( print ) }
   end
-
 
 
   def save()
@@ -40,6 +41,22 @@ class Print
     result = SqlRunner.run(sql, values)
     id = result.first['id']
     @id = id
+  end
+
+
+  def update()
+    sql = "UPDATE prints
+    SET
+    (
+      wholesale_cost,
+      retail_price
+    ) =
+    (
+      $1, $2
+    )
+    WHERE id = $3"
+    values = [@wholesale_cost, @retail_price, @id]
+    SqlRunner.run( sql, values )
   end
 
 end

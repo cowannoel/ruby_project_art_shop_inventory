@@ -2,13 +2,13 @@ require_relative( '../db/sql_runner' )
 
 class Stock
 
-  attr_reader( :quantity, :product_id, :id )
+  attr_reader( :product_id, :id )
+  attr_accessor ( :quantity )
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @print_id = options['print_id']
     @quantity = options['quantity']
-
   end
 
 
@@ -17,7 +17,6 @@ class Stock
     results = SqlRunner.run( sql )
     return results.map { |stock| Stock.new( stock ) }
   end
-
 
 
   def save()
@@ -38,6 +37,14 @@ class Stock
   end
 
 
+  def update()
+    sql = "UPDATE stocks
+    SET
+      quantity = $1
+    WHERE id = $2"
+    values = [@quantity, @id]
+    SqlRunner.run( sql, values )
+  end
 
 
 end

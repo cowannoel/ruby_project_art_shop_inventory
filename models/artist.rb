@@ -2,7 +2,9 @@ require_relative( '../db/sql_runner' )
 
 class Artist
 
-  attr_reader( :first_name, :last_name, :contact, :id )
+  attr_reader( :id )
+  attr_accessor( :first_name, :last_name, :contact )
+
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -25,21 +27,6 @@ class Artist
   end
 
 
-  def update()
-    sql = "UPDATE artists
-    SET
-    (
-      first_name,
-      last_name,
-      contact
-    ) =
-    (
-      $1, $2, $3
-    )
-    WHERE id = $4"
-    values = [@first_name, @last_name, @contact, @id]
-    SqlRunner.run( sql, values )
-  end
 
 
   def save()
@@ -61,6 +48,21 @@ class Artist
   end
 
 
+  def update()
+    sql = "UPDATE artists
+    SET
+    (
+      first_name,
+      last_name,
+      contact
+    ) =
+    (
+      $1, $2, $3
+    )
+    WHERE id = $4"
+    values = [@first_name, @last_name, @contact, @id]
+    SqlRunner.run( sql, values )
+  end
 
 
 end
