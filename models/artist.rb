@@ -14,7 +14,6 @@ class Artist
   end
 
 
-
   def self.all()
     sql = "SELECT * FROM artists"
     results = SqlRunner.run( sql )
@@ -25,8 +24,6 @@ class Artist
     sql = "DELETE FROM artists"
     SqlRunner.run( sql )
   end
-
-
 
 
   def save()
@@ -62,6 +59,14 @@ class Artist
     WHERE id = $4"
     values = [@first_name, @last_name, @contact, @id]
     SqlRunner.run( sql, values )
+  end
+
+
+  def delete()
+    sql = "DELETE FROM artists
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
 

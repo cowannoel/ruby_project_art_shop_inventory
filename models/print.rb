@@ -23,6 +23,12 @@ class Print
   end
 
 
+  def self.delete_all
+    sql = "DELETE FROM prints"
+    SqlRunner.run( sql )
+  end
+
+
   def save()
     sql = "INSERT INTO prints
     (
@@ -58,5 +64,14 @@ class Print
     values = [@wholesale_cost, @retail_price, @id]
     SqlRunner.run( sql, values )
   end
+
+
+  def delete()
+    sql = "DELETE FROM prints
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
 
 end

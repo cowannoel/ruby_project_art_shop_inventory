@@ -19,6 +19,13 @@ class Stock
   end
 
 
+  def self.delete_all
+    sql = "DELETE FROM stocks"
+    SqlRunner.run( sql )
+  end
+
+
+
   def save()
     sql = "INSERT INTO stocks
     (
@@ -45,6 +52,15 @@ class Stock
     values = [@quantity, @id]
     SqlRunner.run( sql, values )
   end
+
+
+  def delete()
+    sql = "DELETE FROM stocks
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
 
 
 end
