@@ -26,6 +26,15 @@ class Artist
   end
 
 
+  def self.find( id )
+    sql = "SELECT * FROM artists
+    WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run( sql, values )
+    return Artist.new( results.first )
+  end
+
+
   def save()
     sql = "INSERT INTO artists
     (

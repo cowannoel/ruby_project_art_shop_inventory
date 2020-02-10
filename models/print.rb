@@ -29,6 +29,16 @@ class Print
   end
 
 
+  def self.find( id )
+    sql = "SELECT * FROM prints
+    WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run( sql, values )
+    return Print.new( results.first )
+  end
+
+
+
   def save()
     sql = "INSERT INTO prints
     (
