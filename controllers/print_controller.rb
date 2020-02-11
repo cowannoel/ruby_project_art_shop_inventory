@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 require_relative( '../models/print.rb' )
+require_relative( '../models/artist.rb' )
 also_reload( '../models/*' )
 
 # index - show all
@@ -11,6 +12,7 @@ end
 
 # new - get form to create new artist
 get '/prints/new' do
+  @artists = Artist.all
   erb(:"prints/new")
 end
 

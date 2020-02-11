@@ -1,5 +1,5 @@
 <h1>PRINTS</h1>
-
+<a href="/prints/new">Add a new print</a>
 <table>
   <tr>
     <th>Artist</th>
@@ -13,7 +13,7 @@
   <% @prints.each do |print| %>
   <tr>
     <td><a href="/artists/<%= print.artist.id %>"><%= print.artist.full_name() %></a></td>
-    <td><%= print.title() %></td>
+    <td> <a href="/prints/<%= print.id %>"><%= print.title() %></a></td>
     <td><%= print.description %></td>
     <td><%= print.wholesale_cost %></td>
     <td><%= print.retail_price %></td>

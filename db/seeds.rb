@@ -2,7 +2,7 @@ require_relative('../models/artist')
 require_relative('../models/print')
 require('pry-byebug')
 
-
+Print.delete_all()
 Artist.delete_all()
 
 

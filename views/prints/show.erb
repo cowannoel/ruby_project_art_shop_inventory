@@ -1,0 +1,28 @@
+<p>"SHOW PAGE"</p>
+
+<table>
+  <tr>
+    <th>Artist</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Wholesale Cost</th>
+    <th>Retail Price</th>
+    <th>Quantity</th>
+    <th>Stock Level</th>
+  </tr>
+    <td><%= @print.artist.full_name %></td>
+    <td><%= @print.title %></td>
+    <td><%= @print.description %></td>
+    <td><%= @print.wholesale_cost %></td>
+    <td><%= @print.retail_price %></td>
+    <td><%= @print.quantity %></td>
+    <td><%= @print.stock_level %></td>
+
+</table>
+
+
+
+<form action="/prints/<%= @print.id %>/delete" method="post">
+  <input type="submit" value="Delete Print"/>
+
+</form>

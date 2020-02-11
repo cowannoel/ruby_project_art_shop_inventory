@@ -7,13 +7,26 @@
     <input id="description" type="text" name="description"/>
   <br>
   <br>
-  <label for="wholesale-price">Wholesale Price</label>
-    <input id="wholesale-price" type="text" name="wholesale_price"/>
+  <label for="wholesale-cost">Wholesale Price</label>
+    <input id="wholesale-cost" type="text" name="wholesale_cost"/>
   <br>
   <br>
-  <label for="retail-cost">Retail Cost</label>
-    <input id="retail-cost" type="text" name="retail_cost"/>
+  <label for="retail-price">Retail Cost</label>
+    <input id="retail-price" type="text" name="retail_price"/>
     <br>
     <br>
+    <label for="quantity">Quantity</label>
+    <input type="text" name="quantity"/>
+
+  <label for="artist">Artist</label>
+    <select name="artist_id">
+      <% @artists.each do |artist| %>
+        <option value="<%= artist.id %>"><%= artist.full_name %></option>
+
+      <% end %>
+    </select>
+    <br>
+    <br>
+
   <input type="submit" value="Save Print">
 </form>
