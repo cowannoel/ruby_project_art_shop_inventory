@@ -1,4 +1,3 @@
-DROP TABLE stocks;
 DROP TABLE prints;
 DROP TABLE artists;
 
@@ -17,12 +16,6 @@ CREATE TABLE prints (
   description text,
   artist_id INT REFERENCES artists(id) ON DELETE CASCADE,
   wholesale_cost INT,
-  retail_price INT
-);
-
-
-CREATE TABLE stocks (
-  id SERIAL primary key,
-  print_id INT REFERENCES prints(id) ON DELETE CASCADE,
+  retail_price INT,
   quantity INT
 );

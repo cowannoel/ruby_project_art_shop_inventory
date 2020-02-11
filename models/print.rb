@@ -3,7 +3,7 @@ require_relative( '../db/sql_runner' )
 class Print
 
   attr_reader( :title, :description, :artist_id, :id )
-  attr_accessor( :wholesale_cost, :retail_price, )
+  attr_accessor( :wholesale_cost, :retail_price, :quantity )
 
 
   def initialize( options )
@@ -13,6 +13,7 @@ class Print
     @artist_id = options['artist_id']
     @wholesale_cost = options['wholesale_cost']
     @retail_price = options['retail_price']
+    @quantity = options['quantity']
   end
 
 
@@ -38,6 +39,15 @@ class Print
   end
 
 
+  def artist()
+    sql = "SELECT * FROM artists
+    WHERE id = $1"
+    values = [@artist_id]
+    results = SqlRunner.run(sql, values)
+    return Artist.new(results.first)
+  end
+
+
 
   def save()
     sql = "INSERT INTO prints
@@ -46,14 +56,15 @@ class Print
       description,
       artist_id,
       wholesale_cost,
-      retail_price
+      retail_price,
+      quantity
     )
     VALUES
     (
-      $1, $2, $3, $4, $5
+      $1, $2, $3, $4, $5, $6
     )
     RETURNING id"
-    values = [@title, @description, @artist_id, @wholesale_cost, @retail_price]
+    values = [@title, @description, @artist_id, @wholesale_cost, @retail_price, @quantity]
     result = SqlRunner.run(sql, values)
     id = result.first['id']
     @id = id

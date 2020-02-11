@@ -2,8 +2,8 @@ require_relative( '../db/sql_runner' )
 
 class Artist
 
-  attr_reader( :id )
-  attr_accessor( :first_name, :last_name, :contact )
+  attr_reader :id
+  attr_accessor :first_name, :last_name, :contact
 
 
   def initialize( options )
@@ -15,7 +15,7 @@ class Artist
 
 
   def self.all()
-    sql = "SELECT * FROM artists"
+    sql = "SELECT * FROM artists ORDER BY last_name ASC"
     results = SqlRunner.run( sql )
     return results.map { |artist| Artist.new( artist ) }
   end
@@ -32,6 +32,15 @@ class Artist
     values = [id]
     results = SqlRunner.run( sql, values )
     return Artist.new( results.first )
+  end
+
+
+  def prints()
+    sql = "Select * FROM prints
+    WHERE artist_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return results.map { |print| Print.new(print)}
   end
 
 
@@ -78,5 +87,7 @@ class Artist
     SqlRunner.run(sql, values)
   end
 
-
+  def full_name()
+    return "#{@first_name} #{@last_name}"
+  end
 end

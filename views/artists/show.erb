@@ -1,0 +1,17 @@
+<p><%= @artist.full_name() %></p>
+<p><%= @artist.contact %></p>
+<ul>
+
+<% for print in @artist.prints %>
+<li><%= print.title %> - <%= print.description %> - <%= print.wholesale_cost %> - <%= print.retail_price %></li>
+
+<% end %>
+
+</ul>
+
+
+<a href="/artists/<%= @artist.id %>/edit">Edit</a>
+
+<form method="post" action="/artists/<%= @artist.id %>/delete">
+  <input type="submit" value="Delete Artist"/>
+</form>

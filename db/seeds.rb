@@ -1,6 +1,5 @@
-require_relative('../models/artist.rb')
-require_relative('../models/print.rb')
-require_relative('../models/stock.rb')
+require_relative('../models/artist')
+require_relative('../models/print')
 require('pry-byebug')
 
 
@@ -48,7 +47,8 @@ print1 = Print.new({
   'description' => 'Screen Print',
   'artist_id' => artist1.id,
   'wholesale_cost' => 250,
-  'retail_price' => 450
+  'retail_price' => 450,
+  'quantity' => 10
   })
 
 print1.save()
@@ -59,7 +59,8 @@ print2 = Print.new({
   'description' => 'Giclee',
   'artist_id' => artist2.id,
   'wholesale_cost' => 200,
-  'retail_price' => 400
+  'retail_price' => 400,
+  'quantity' => 3
   })
 
 print2.save()
@@ -70,7 +71,8 @@ print3 = Print.new({
   'description' => 'Screen Print',
   'artist_id' => artist3.id,
   'wholesale_cost' => 300,
-  'retail_price' => 500
+  'retail_price' => 500,
+  'quantity' => 5
   })
 
 print3.save()
@@ -81,40 +83,12 @@ print4 = Print.new({
   'description' => 'Screen Print',
   'artist_id' => artist4.id,
   'wholesale_cost' => 500,
-  'retail_price' => 800
+  'retail_price' => 800,
+  'quantity' => 6
   })
 
 print4.save()
 
 
-stock1 = Stock.new({
-  'print_id' => print1.id,
-  'quantity' => 10
-  })
-
-stock1.save()
-
-stock2 = Stock.new({
-  'print_id' => print2.id,
-  'quantity' => 3
-  })
-
-stock2.save()
-
-stock3 = Stock.new({
-  'print_id' => print3.id,
-  'quantity' => 5
-  })
-
-stock3.save()
-
-
-stock4 = Stock.new({
-  'print_id' => print4.id,
-  'quantity' => 6
-  })
-
-stock4.save()
-
-  binding.pry
-  nil
+binding.pry
+nil
