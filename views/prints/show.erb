@@ -1,5 +1,3 @@
-<p>"SHOW PAGE"</p>
-
 <table>
   <tr>
     <th>Artist</th>
@@ -20,7 +18,7 @@
 
 </table>
 
-
+  <a href="/prints/<%= @print.id %>/edit">Edit Prints</a>
 
 <form action="/prints/<%= @print.id %>/delete" method="post">
   <input type="submit" value="Delete Print"/>

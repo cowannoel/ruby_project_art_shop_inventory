@@ -2,15 +2,15 @@ require_relative( '../db/sql_runner' )
 
 class Print
 
-  attr_reader( :title, :description, :artist_id, :id )
-  attr_accessor( :wholesale_cost, :retail_price, :quantity )
+  attr_reader( :id )
+  attr_accessor( :title, :description, :artist_id, :wholesale_cost, :retail_price, :quantity )
 
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @title = options['title']
     @description = options['description']
-    @artist_id = options['artist_id']
+    @artist_id = options['artist_id'].to_i
     @wholesale_cost = options['wholesale_cost']
     @retail_price = options['retail_price']
     @quantity = options['quantity'].to_i
@@ -45,6 +45,12 @@ class Print
     end
   end
 
+  def stock_level_out()
+    if @quantity <= 0
+      return "Out of Stock"
+    end
+  end
+
 
   def artist()
     sql = "SELECT * FROM artists
@@ -53,7 +59,6 @@ class Print
     results = SqlRunner.run(sql, values)
     return Artist.new(results.first)
   end
-
 
 
   def save()
@@ -82,14 +87,18 @@ class Print
     sql = "UPDATE prints
     SET
     (
+      title,
+      description,
+      artist_id,
       wholesale_cost,
-      retail_price
+      retail_price,
+      quantity
     ) =
     (
-      $1, $2
+      $1, $2, $3, $4, $5, $6
     )
-    WHERE id = $3"
-    values = [@wholesale_cost, @retail_price, @id]
+    WHERE id = $7"
+    values = [@title, @description, @artist_id, @wholesale_cost, @retail_price, @quantity, @id]
     SqlRunner.run( sql, values )
   end
 

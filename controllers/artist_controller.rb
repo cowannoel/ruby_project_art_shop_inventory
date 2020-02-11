@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
-require_relative( '../models/artist.rb' )
+require_relative( '../models/artist' )
+require_relative( '../models/print' )
 also_reload( '../models/*' )
 
 # index - show all

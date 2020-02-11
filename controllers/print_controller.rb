@@ -1,7 +1,8 @@
 require( 'sinatra' )
+require( 'pry' )
 require( 'sinatra/contrib/all' )
-require_relative( '../models/print.rb' )
-require_relative( '../models/artist.rb' )
+require_relative( '../models/print' )
+require_relative( '../models/artist' )
 also_reload( '../models/*' )
 
 # index - show all
@@ -32,6 +33,7 @@ end
 # edit - get the page with the form prepopulated
 get '/prints/:id/edit' do # edit
   @print = Print.find( params[:id] )
+  @artists = Artist.all()
   erb(:"prints/edit")
 end
 
