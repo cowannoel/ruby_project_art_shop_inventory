@@ -1,11 +1,24 @@
 <h1>PRINTS</h1>
 
-
-<% @prints.each do |print| %>
-<p>Artist:<a href="/artists/<%= print.artist.id %>"><%= print.artist.full_name() %></a></p>
-<p>Title: <a href="/prints/<%= print.id %>"><%= print.title() %></a></p>
-<p>Description: <%= print.description %></p>
-<p>wholesale cost: <%= print.wholesale_cost %></p>
-<p>Retail price: <%= print.retail_price %></p>
-<hr />
-<% end %>
+<table>
+  <tr>
+    <th>Artist</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Wholesale Cost</th>
+    <th>Retail Price</th>
+    <th>Quantity</th>
+    <th>Stock Level</th>
+  </tr>
+  <% @prints.each do |print| %>
+  <tr>
+    <td><a href="/artists/<%= print.artist.id %>"><%= print.artist.full_name() %></a></td>
+    <td><%= print.title() %></td>
+    <td><%= print.description %></td>
+    <td><%= print.wholesale_cost %></td>
+    <td><%= print.retail_price %></td>
+    <td><%= print.quantity %></td>
+    <td><%= print.stock_level %></td>
+  </tr>
+  <% end %>
+</table>

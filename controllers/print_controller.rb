@@ -19,30 +19,30 @@ get '/prints/:id' do
   @print = Print.find(params[:id])
   erb(:"prints/show")
 end
-#
-# # CREATE - fire request to create new artist in database
-# post '/artists' do
-#   artist = Artist.new(params)
-#   artist.save()
-#   redirect to '/artists'
-# end
-#
-# # edit - get the page with the form prepopulated
-# get '/artists/:id/edit' do # edit
-#   @artist = Artist.find( params[:id] )
-#   erb(:"artists/edit")
-# end
-#
-# # update - fire a post request to update edited artist (see CREATE)
-# post '/artists/:id' do
-#   artist = Artist.new(params)
-#   artist.update
-#   redirect to "/artists/#{params['id']}"
-# end
-#
-# # delele - fire a post request to delete from db
-# post '/artists/:id/delete' do # delete
-#   artist = Artist.find( params[:id] )
-#   artist.delete()
-#   redirect to '/artists'
-# end
+
+# CREATE - fire request to create new artist in database
+post '/prints' do
+  print = Print.new(params)
+  print.save()
+  redirect to '/prints'
+end
+
+# edit - get the page with the form prepopulated
+get '/prints/:id/edit' do # edit
+  @print = Print.find( params[:id] )
+  erb(:"prints/edit")
+end
+
+# update - fire a post request to update edited artist (see CREATE)
+post '/prints/:id' do
+  print = Print.new(params)
+  print.update
+  redirect to "/prints/#{params['id']}"
+end
+
+# delele - fire a post request to delete from db
+post '/prints/:id/delete' do # delete
+  print = Print.find( params[:id] )
+  print.delete()
+  redirect to '/prints'
+end

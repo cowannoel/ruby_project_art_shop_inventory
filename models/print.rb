@@ -13,7 +13,7 @@ class Print
     @artist_id = options['artist_id']
     @wholesale_cost = options['wholesale_cost']
     @retail_price = options['retail_price']
-    @quantity = options['quantity']
+    @quantity = options['quantity'].to_i
   end
 
 
@@ -36,6 +36,13 @@ class Print
     values = [id]
     results = SqlRunner.run( sql, values )
     return Print.new( results.first )
+  end
+
+
+  def stock_level()
+    if @quantity <= 3
+      return "Low Stock"
+    end
   end
 
 
