@@ -49,11 +49,15 @@ class Print
     end
   end
 
-  # def stock_level_out()
-  #   if @quantity <= 0
-  #     return "Out of Stock"
-  #   end
-  # end
+  def stock_level_css()
+    if @quantity <= 0
+      return "out-of-stock"
+    elsif @quantity <= 3
+      return "low-stock"
+    else
+      return "good"
+    end
+  end
 
 
   def artist()

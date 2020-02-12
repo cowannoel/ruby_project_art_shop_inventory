@@ -1,25 +1,25 @@
 <form action="/prints" method="post">
   <label for="title">Title</label>
-    <input id="title" type="text" name="title"/>
+    <input id="title" type="text" name="title" required/>
   <br>
   <br>
   <label for="description">Description</label>
-    <input id="description" type="text" name="description"/>
+    <input id="description" type="text" name="description" required/>
   <br>
   <br>
   <label for="wholesale-cost">Wholesale Price</label>
-    <input id="wholesale-cost" type="text" name="wholesale_cost"/>
+    <input id="wholesale-cost" type="text" name="wholesale_cost" required/>
   <br>
   <br>
   <label for="retail-price">Retail Cost</label>
-    <input id="retail-price" type="text" name="retail_price"/>
+    <input id="retail-price" type="text" name="retail_price" required/>
     <br>
     <br>
     <label for="quantity">Quantity</label>
-    <input type="text" name="quantity"/>
+    <input type="text" name="quantity" required/>
 
   <label for="artist">Artist</label>
-    <select name="artist_id">
+    <select name="artist_id" required>
       <% @artists.each do |artist| %>
         <option value="<%= artist.id %>"><%= artist.full_name %></option>
 

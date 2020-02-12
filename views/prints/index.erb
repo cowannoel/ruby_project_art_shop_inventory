@@ -18,7 +18,7 @@
     <td><%= print.wholesale_cost %></td>
     <td><%= print.retail_price %></td>
     <td><%= print.quantity %></td>
-    <td><%= print.stock_level %></td>
+    <td class="<%= print.stock_level_css %>"><%= print.stock_level %></td>
   </tr>
   <% end %>
 </table>
