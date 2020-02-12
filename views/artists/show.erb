@@ -1,7 +1,7 @@
 
 
-<p><%= @artist.full_name() %></p>
-<p><%= @artist.contact %></p>
+<h1><%= @artist.full_name() %></h1>
+<h2><%= @artist.contact %></h2>
 
 <% for print in @artist.prints %>
 <ul>
@@ -11,9 +11,6 @@
 <li>Retail price:<%= print.retail_price %></li>
 </ul>
 <% end %>
-
-
-
 
 <a href="/artists/<%= @artist.id %>/edit">Edit Artist</a>
 
