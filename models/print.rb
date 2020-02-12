@@ -40,11 +40,11 @@ class Print
 
 
   def stock_level()
-    if @quantity <= 3
-      return "Low Stock"
-    elsif @quantity <= 0
+    if @quantity <= 0
       return "Out of stock"
-    else @quantity >= 4
+    elsif @quantity <= 3
+      return "Low Stock"
+    else
       return "Good"
     end
   end
