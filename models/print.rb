@@ -42,14 +42,18 @@ class Print
   def stock_level()
     if @quantity <= 3
       return "Low Stock"
+    elsif @quantity <= 0
+      return "Out of stock"
+    else @quantity >= 4
+      return "Good"
     end
   end
 
-  def stock_level_out()
-    if @quantity <= 0
-      return "Out of Stock"
-    end
-  end
+  # def stock_level_out()
+  #   if @quantity <= 0
+  #     return "Out of Stock"
+  #   end
+  # end
 
 
   def artist()
